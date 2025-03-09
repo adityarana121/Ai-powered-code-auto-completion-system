@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Autocomplete</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>AI-Powered Code Autocomplete</h1>
+        <button id="theme-toggle">🌙 Dark Mode</button>
+    </header>
+
+    <main>
+        <div class="editor-container">
+            <textarea id="code" placeholder="Type your code here..."></textarea>
+            <div id="suggestions"></div>
+        </div>
+
+        <button id= "run-btn" onclick="submitCode()">Run Code</button>
+
+        <div class="output-container">
+            <!-- Parser Table Section -->
+            <section>
+                <h3>Parser Table</h3>
+                <table id="parser-table">
+                    <thead>
+                        <tr>
+                            <th>Token</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- AST Section -->
+            <section>
+                <h3>Abstract Syntax Tree (AST)</h3>
+                <pre id="ast-output">Results will appear here...</pre>
+            </section>
+
+            <!-- Code Suggestions -->
+            <section>
+                <h3>Code Suggestions</h3>
+                <p><strong>Trie Suggestions:</strong> <span id="trie-suggestions"></span></p>
+                <p><strong>ML Suggestions:</strong> <span id="ml-suggestions"></span></p>
+            </section>
+        </div>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
