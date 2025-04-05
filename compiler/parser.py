@@ -2,6 +2,10 @@ import ply.yacc as yacc
 from lexer import tokens 
 import sys
 import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from compiler.semantic_analyzer import SemanticAnalyzer
+from compiler.code_generator import CodeGenerator
 
 # Add the parent directory to the system path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -46,3 +50,33 @@ if __name__ == "__main__":
     import json
     with open("compiler/output_ast.json", "w") as f:
         json.dump(result.to_dict(), f, indent=4)
+
+if __name__ == "__main__":
+    code = "x = 5 + 3"  # You can change this for testing
+    result = parser.parse(code)
+    
+    print("Parsed AST:")
+    print(result)
+
+    # Semantic Analysis
+    analyzer = SemanticAnalyzer()
+    try:
+        analyzer.analyze(result.children[0])
+        print("Semantic analysis passed ✅")
+    except Exception as e:
+        print(f"Semantic analysis failed ❌: {e}")
+        exit(1)
+
+    # Code Generation
+    generator = CodeGenerator()
+    generated_code = generator.generate(result)
+
+    print("\nGenerated Code:")
+    print(generated_code)
+
+    # 🔽 Add this block to save the generated code
+    with open("output.py", "w") as f:
+         f.write(generated_code)
+
+
+
