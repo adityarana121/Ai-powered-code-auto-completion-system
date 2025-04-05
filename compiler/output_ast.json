@@ -1,0 +1,33 @@
+{
+    "type": "stmt",
+    "value": null,
+    "children": [
+        {
+            "type": "assign",
+            "value": null,
+            "children": [
+                {
+                    "type": "var",
+                    "value": "x",
+                    "children": []
+                },
+                {
+                    "type": "binop",
+                    "value": "+",
+                    "children": [
+                        {
+                            "type": "num",
+                            "value": 5,
+                            "children": []
+                        },
+                        {
+                            "type": "num",
+                            "value": 3,
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
