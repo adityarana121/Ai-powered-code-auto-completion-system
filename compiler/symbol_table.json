@@ -1,6 +1,10 @@
 {
-        "x": "int",
-        "y": "float",
-        "print": "builtin"
+        "symbols": [
+          {
+            "name": "x",
+            "type": "int",
+            "scope": "global"
+          }
+        ]
+      }
       
-}
