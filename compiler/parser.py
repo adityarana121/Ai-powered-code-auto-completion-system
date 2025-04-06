@@ -63,9 +63,12 @@ if __name__ == "__main__":
     try:
         analyzer.analyze(result.children[0])
         print("Semantic analysis passed ✅")
+        analyzer.print_table()  # <-- Print symbol table to console
+        analyzer.export_table("compiler/symbol_table.json")  # <-- Save to file
     except Exception as e:
         print(f"Semantic analysis failed ❌: {e}")
         exit(1)
+
 
     # Code Generation
     generator = CodeGenerator()
