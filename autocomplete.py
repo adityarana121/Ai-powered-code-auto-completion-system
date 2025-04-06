@@ -13,25 +13,22 @@ class AutoCompleteEngine:
         except FileNotFoundError:
             return {}
 
-    def suggest(self, input_code):
-        lexer.input(input_code)
-        tokens = [tok.value for tok in lexer]
-        if not tokens:
-            return []
-
-        last_token = tokens[-1]
+    def suggest(self, code_fragment):  # ← Now it's a method of the class
         suggestions = []
+        builtin_suggestions = ['print', 'input', 'if', 'else', 'for', 'while', 'def', 'return']
 
-        for symbol in self.symbols:
-            if symbol.startswith(last_token):
-                suggestions.append(symbol)
+        for entry in self.symbols.get('symbols', []):
+            name = entry.get('name')
+            if name and name.startswith(code_fragment):
+                suggestions.append(name)
 
-        return suggestions
-
-# Example usage
+        suggestions.extend([kw for kw in builtin_suggestions if kw.startswith(code_fragment)])
+        return list(set(suggestions))
+    
 if __name__ == "__main__":
     engine = AutoCompleteEngine()
     user_input = input("Start typing code: ")
     suggestions = engine.suggest(user_input)
     print("Suggestions:", suggestions)
+
 
